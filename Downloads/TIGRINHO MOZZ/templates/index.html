@@ -27,7 +27,7 @@
   <script src="{{ url_for('static', filename='js/redirect.js') }}"></script>
 
 <style>
-    body, #root {
+    body, html {
         background-image: url('https://fortuninetyger.lovable.app/assets/bg-pagoda-8pQAIjpx.jpg') !important;
         background-size: cover !important;
         background-position: center !important;
@@ -36,9 +36,13 @@
         background-color: #000 !important;
     }
     
-    /* Make the tailwind background classes transparent so the background image shows through */
-    .bg-background, .bg-black, .bg-zinc-950, .bg-zinc-900 {
+    /* Target specifically the first container of the app to be transparent 
+       so the body image shows, without affecting inner buttons or cards. */
+    #root {
         background-color: transparent !important;
+    }
+    #root > div {
+        background-color: transparent;
     }
 </style>
 

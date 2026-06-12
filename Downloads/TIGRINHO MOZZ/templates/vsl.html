@@ -74,6 +74,127 @@
             transform: scale(1.05);
             box-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
         }
+
+        /* Fake Comments Section Styles */
+        .comments-section {
+            margin-top: 50px;
+            background-color: rgba(15, 15, 15, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            border: 1px solid #333;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .comments-count {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .comment-sort {
+            cursor: pointer;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff5500, #ff0000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .comment-content-wrapper {
+            flex-grow: 1;
+        }
+
+        .comment-bubble {
+            background-color: #242526;
+            padding: 10px 15px;
+            border-radius: 18px;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            color: #e4e6eb;
+            font-size: 15px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .comment-footer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 5px;
+            margin-left: 10px;
+            font-size: 12px;
+            color: #b0b3b8;
+            font-weight: bold;
+        }
+
+        .comment-action {
+            cursor: pointer;
+        }
+
+        .comment-action:hover {
+            text-decoration: underline;
+        }
+
+        .comment-time {
+            font-weight: normal;
+        }
+
+        .comment-reactions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+            background-color: #242526;
+            padding: 2px 6px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            font-weight: normal;
+            color: #b0b3b8;
+        }
+
+        .reaction-icon {
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -87,6 +208,127 @@
         </div>
 
         <a href="#" class="cta-button" id="buy-button" style="display: none;">QUERO ACESSAR AGORA!</a>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <div class="comments-header">
+                <div class="comments-count">
+                    <span>ⓘ 6 Comentários</span>
+                </div>
+                <div class="comment-sort">
+                    Mais relevantes ▾
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-avatar">CM</div>
+                <div class="comment-content-wrapper">
+                    <div class="comment-bubble">
+                        <div class="comment-name">Carlitos Mucavele</div>
+                        <p class="comment-text">Receba 8.450 MT no M-Pesa em 6 min, não acreditei quando vi uma notificação 🙏🐯 Só siga o passo a passo do vídeo e trabalhei mesmo!</p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-action">Gostei</span>
+                        <span class="comment-action">Responder</span>
+                        <span class="comment-time">8 min</span>
+                        <div class="comment-reactions">
+                            <span class="reaction-icon">👍</span><span class="reaction-icon">❤️</span> 187
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-avatar">ET</div>
+                <div class="comment-content-wrapper">
+                    <div class="comment-bubble">
+                        <div class="comment-name">Eunice Tembe</div>
+                        <p class="comment-text">Caiu 6.200 MT no Emola agora mesmo 😱💖 Tava precisando pagar a renda, mt obrigada!</p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-action">Gostei</span>
+                        <span class="comment-action">Responder</span>
+                        <span class="comment-time">12 min</span>
+                        <div class="comment-reactions">
+                            <span class="reaction-icon">👍</span><span class="reaction-icon">❤️</span> 142
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-avatar">AS</div>
+                <div class="comment-content-wrapper">
+                    <div class="comment-bubble">
+                        <div class="comment-name">Aderito Sitoe</div>
+                        <p class="comment-text">Já é a 3ª vez que faço, sempre cai certinho. Recomendo demais 🔥</p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-action">Gostei</span>
+                        <span class="comment-action">Responder</span>
+                        <span class="comment-time">17 min</span>
+                        <div class="comment-reactions">
+                            <span class="reaction-icon">👍</span><span class="reaction-icon">❤️</span> 98
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-avatar">FM</div>
+                <div class="comment-content-wrapper">
+                    <div class="comment-bubble">
+                        <div class="comment-name">Filipa Mondlane</div>
+                        <p class="comment-text">Maputo aqui, recebi em menos de 10 minutos no M-Pesa ✅</p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-action">Gostei</span>
+                        <span class="comment-action">Responder</span>
+                        <span class="comment-time">21 min</span>
+                        <div class="comment-reactions">
+                            <span class="reaction-icon">👍</span><span class="reaction-icon">❤️</span> 76
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-avatar">JM</div>
+                <div class="comment-content-wrapper">
+                    <div class="comment-bubble">
+                        <div class="comment-name">Jorge Maluleque</div>
+                        <p class="comment-text">Quem ainda tá com dúvida, faz logo! Eu também duvidei e agora não me arrependo 😎</p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-action">Gostei</span>
+                        <span class="comment-action">Responder</span>
+                        <span class="comment-time">27 min</span>
+                        <div class="comment-reactions">
+                            <span class="reaction-icon">👍</span><span class="reaction-icon">❤️</span> 64
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-avatar">SC</div>
+                <div class="comment-content-wrapper">
+                    <div class="comment-bubble">
+                        <div class="comment-name">Sofia Chambal</div>
+                        <p class="comment-text">Funciona mesmo gente, só sigam exatamente as instruções do vídeo 🙌</p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-action">Gostei</span>
+                        <span class="comment-action">Responder</span>
+                        <span class="comment-time">33 min</span>
+                        <div class="comment-reactions">
+                            <span class="reaction-icon">👍</span><span class="reaction-icon">❤️</span> 51
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script>
