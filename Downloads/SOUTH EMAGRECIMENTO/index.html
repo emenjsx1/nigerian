@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mounjaro for the Poor</title>
+  <script type="module" crossorigin src="/src/main.js"></script>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header with logo and progress bar -->
+    <header class="app-header">
+      <div class="logo" style="overflow: visible; display: flex; align-items: center; justify-content: center;">
+        <img src="src/logo.png" alt="Mounjaro for the Poor" style="height: 140px; min-height: 140px; width: auto; object-fit: contain; margin: -30px 0; max-height: none; display: block;">
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+      </div>
+    </header>
+
+    <!-- Quiz main view container -->
+    <main class="quiz-steps">
+
+      <!-- STEP 1: WELCOME SCREEN -->
+      <section class="step-view active" id="step-lead">
+        <div class="hero-image-wrapper">
+          <img class="hero-image" src="src/media_3.jpg" alt="Mounjaro for the Poor">
+        </div>
+        <div class="alert-banner alert-danger" style="justify-content: center;">
+          <strong>🚨 Only 1 consultation per person</strong>
+        </div>
+        <button class="btn btn-pulse" data-action="next">Start the Test</button>
+      </section>
+
+      <!-- STEP 2: GOAL WEIGHT -->
+      <section class="step-view" id="step-objetivo">
+        <h2>How many kilograms do you <span class="text-green">want to lose?</span></h2>
+        <div class="options-grid grid-cols-2" style="margin-bottom: 2rem;">
+          <div class="option-card option-card-vertical" data-id="ate-5kg" data-name="meta">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/YIn74-1.webp" alt="Up to 5 kg">
+            <div class="option-card-text">Up to 5 kg</div>
+          </div>
+          <div class="option-card option-card-vertical" data-id="6-10kg" data-name="meta">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/YIn74-1.webp" alt="6 to 10 kg">
+            <div class="option-card-text">6 to 10 kg</div>
+          </div>
+          <div class="option-card option-card-vertical" data-id="11-19kg" data-name="meta">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/YIn74-1.webp" alt="11 to 19 kg">
+            <div class="option-card-text">11 to 19 kg</div>
+          </div>
+          <div class="option-card option-card-vertical" data-id="20kg-mais" data-name="meta">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/YIn74-1.webp" alt="20 kg or more">
+            <div class="option-card-text">20 kg or more</div>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+          <h2 style="font-size: 1.2rem; margin-bottom: 1rem;">Want to lose fat in a <span class="text-green">specific area?</span></h2>
+          <div class="option-card" data-id="perder-barriga" data-name="meta_especifica" style="max-width: 100%;">
+            <img style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px; flex-shrink: 0;" src="https://media.inlead.cloud/uploads/26522/2025-08-11/7slsw-2.webp" alt="Belly only">
+            <div class="option-card-text">Lose belly fat only</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+        </div>
+        <button class="btn" style="margin-top: 1.5rem;" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 3: BODY TYPE -->
+      <section class="step-view" id="step-corpo-tipo">
+        <h2>What is your <span class="text-green">body type?</span></h2>
+        <div class="options-grid grid-cols-2">
+          <div class="option-card option-card-vertical" data-id="medio" data-name="corpo_tipo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-05-05/2k8qz-cbd82899e2baa59ad7da-1.png" alt="Average">
+            <div class="option-card-text">Average</div>
+          </div>
+          <div class="option-card option-card-vertical" data-id="plus-size" data-name="corpo_tipo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-05-05/6v0w9-cea5af30ae6e1ea9aa00-1.png" alt="Plus size">
+            <div class="option-card-text">Plus size</div>
+          </div>
+          <div class="option-card option-card-vertical" data-id="acima-peso" data-name="corpo_tipo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-05-05/tyi56-c08d4d459472d8c43c73.png" alt="Overweight">
+            <div class="option-card-text">Overweight</div>
+          </div>
+          <div class="option-card option-card-vertical" data-id="sobrepeso" data-name="corpo_tipo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-05-05/439ip-c340b6e397ea8992b8f6.png" alt="Obese">
+            <div class="option-card-text">Obese</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: TARGET AREAS (Multi-select) -->
+      <section class="step-view" id="step-areas-alvo">
+        <h2>In which areas do you want to <span class="text-green">lose fat?</span></h2>
+        <p class="subtitle">Select as many options as you wish</p>
+        <div class="options-grid grid-cols-2">
+          <div class="option-card option-card-multi option-card-vertical" data-id="culotes" data-name="areasalvo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/TYvQN-sm-ez9f2-asdas.webp" alt="Love handles">
+            <div class="option-card-text">Love handles</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi option-card-vertical" data-id="bracos" data-name="areasalvo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/SsRs2-sm-3ei7p-image-fx.webp" alt="Arms">
+            <div class="option-card-text">Arms</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi option-card-vertical" data-id="barriga" data-name="areasalvo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/D8X8A-sm-cgtdy-image-fx-1.webp" alt="Belly">
+            <div class="option-card-text">Belly</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi option-card-vertical" data-id="coxas" data-name="areasalvo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/IuGbv-sm-q5jub-asfqwfwq.webp" alt="Thighs">
+            <div class="option-card-text">Thighs</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi option-card-vertical" data-id="gluteos" data-name="areasalvo">
+            <img class="option-card-img" src="https://media.inlead.cloud/uploads/26522/2025-08-11/mTAhc-sm-x7me5-asdwqa.webp" alt="Glutes">
+            <div class="option-card-text">Glutes</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi option-card-vertical" data-id="corpo-todo" data-name="areasalvo">
+            <div class="option-card-text text-center" style="font-size: 1rem;">🌟 Whole Body</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+        </div>
+        <button class="btn" style="margin-top: auto;" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 5: ENTER NAME -->
+      <section class="step-view" id="step-nome">
+        <h2>What is your name?</h2>
+        <div class="form-group" style="margin: 2rem 0;">
+          <input class="form-input" type="text" id="nome-input" placeholder="Type your name..." autocomplete="off">
+        </div>
+        <div class="alert-banner alert-light" style="margin-bottom: 2rem; align-items: flex-start;">
+          <span>🔏 To build a personalized plan we need to know your name. All data is 100% protected by encryption.</span>
+        </div>
+        <button class="btn" style="margin-top: auto;" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 6: IMPACT ON LIFE -->
+      <section class="step-view" id="step-impacto">
+        <h2>How has your weight <span class="text-green">impacted your life?</span></h2>
+        <div class="options-grid grid-cols-1">
+          <div class="option-card" data-id="autoestima" data-name="impacto">
+            <span class="option-card-emoji">🪞</span>
+            <div class="option-card-text">I feel like I have low self-esteem</div>
+          </div>
+          <div class="option-card" data-id="cansado" data-name="impacto">
+            <span class="option-card-emoji">⚡</span>
+            <div class="option-card-text">I feel tired and lack energy in my day-to-day</div>
+          </div>
+          <div class="option-card" data-id="saude" data-name="impacto">
+            <span class="option-card-emoji">🩺</span>
+            <div class="option-card-text">I have health complications due to weight: blood pressure, pain, bad exams...</div>
+          </div>
+          <div class="option-card" data-id="intima" data-name="impacto">
+            <span class="option-card-emoji">❤️</span>
+            <div class="option-card-text">My weight affects my intimate life</div>
+          </div>
+          <div class="option-card" data-id="nenhum" data-name="impacto">
+            <div class="option-card-text text-center">None of the above</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 7: ARE YOU HAPPY? -->
+      <section class="step-view" id="step-felicidade">
+        <h2>Are you <span style="color: var(--danger-color);">happy</span> with your appearance currently?</h2>
+        <div class="options-grid grid-cols-1">
+          <div class="option-card" data-id="nao" data-name="felicidade">
+            <span class="option-card-emoji">😪</span>
+            <div class="option-card-text">No, I want to lose weight to feel better</div>
+          </div>
+          <div class="option-card" data-id="sim" data-name="felicidade">
+            <span class="option-card-emoji">🙂</span>
+            <div class="option-card-text">Yes, but I know I can improve more</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 8: WHAT STOPS YOU -->
+      <section class="step-view" id="step-impedimento">
+        <h2>What is stopping you <span style="color: var(--danger-color);">most</span> from losing weight?</h2>
+        <div class="options-grid grid-cols-1">
+          <div class="option-card" data-id="tempo" data-name="impedimento">
+            <span class="option-card-emoji">🕗</span>
+            <div class="option-card-text">
+              <strong>Time</strong><br>
+              <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">Busy routine, lack of free time</span>
+            </div>
+          </div>
+          <div class="option-card" data-id="autocontrole" data-name="impedimento">
+            <span class="option-card-emoji">😬</span>
+            <div class="option-card-text">
+              <strong>Self-control</strong><br>
+              <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">Difficulty controlling hunger or resisting temptation</span>
+            </div>
+          </div>
+          <div class="option-card" data-id="financeiro" data-name="impedimento">
+            <span class="option-card-emoji">💸</span>
+            <div class="option-card-text">
+              <strong>Financial</strong><br>
+              <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">Being healthy is too expensive</span>
+            </div>
+          </div>
+          <div class="option-card" data-id="constancia" data-name="impedimento">
+            <span class="option-card-emoji">🎯</span>
+            <div class="option-card-text">
+              <strong>Consistency</strong><br>
+              <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-secondary);">Not knowing where to start or lacking motivation to maintain a plan</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 9: HOW IT WORKS -->
+      <section class="step-view" id="step-como-funciona">
+        <h2>How does Mounjaro for the Poor <span class="text-green">work?</span></h2>
+        <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);" class="text-center">
+          Our protocol targets the <strong>MAIN CAUSE</strong> of weight gain! With just 20 minutes a day you can prepare everything and start losing weight in the very first days.
+        </p>
+        <div class="hero-image-wrapper">
+          <img class="hero-image" src="src/media_1.jpg" alt="How it works">
+        </div>
+        <p style="font-size: 0.95rem; margin-bottom: 2rem; color: var(--text-secondary);" class="text-center">
+          Mounjaro for the Poor accelerates your metabolism, putting it to work 24 hours a day to burn fat even while you sleep.
+        </p>
+        <button class="btn" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 10: BENEFITS DESIRED (Multi-select) -->
+      <section class="step-view" id="step-beneficios">
+        <h2>Which of these benefits would you <span class="text-green">like to have?</span></h2>
+        <p class="subtitle">We will personalize your plan according to your goal</p>
+        <div class="options-grid grid-cols-1">
+          <div class="option-card option-card-multi" data-id="espelho" data-name="beneficios">
+            <div class="option-card-text">Look in the mirror and feel good about myself, confident</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi" data-id="energia" data-name="beneficios">
+            <div class="option-card-text">Have energy to live day-to-day without feeling exhausted</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi" data-id="roupa" data-name="beneficios">
+            <div class="option-card-text">Be able to wear any clothes without feeling embarrassed or marking my belly</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi" data-id="elogio" data-name="beneficios">
+            <div class="option-card-text">Receive compliments and admiration, being asked what you did to lose weight</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi" data-id="parceiro" data-name="beneficios">
+            <div class="option-card-text">See your partner looking at you with more desire</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+          <div class="option-card option-card-multi" data-id="atividades" data-name="beneficios">
+            <div class="option-card-text">Be able to run, squat, climb stairs, or travel comfortably</div>
+            <div class="option-card-checkbox"></div>
+          </div>
+        </div>
+        <button class="btn" style="margin-top: auto;" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 11: TESTIMONIAL -->
+      <section class="step-view" id="step-depoimento">
+        <h2>🔥 Real Stories of <span class="text-green">Transformation!</span></h2>
+
+        <div class="hero-image-wrapper">
+          <img class="hero-image" src="https://media.inlead.cloud/uploads/26522/2025-08-14/hIIlP-2fc795a0e4da18f9f4db2b24a666b245.jpg" alt="Transformation">
+        </div>
+
+        <div class="testimonial-quote">
+          "I had already tried everything to lose weight and nothing worked. Mounjaro for the Poor was the only thing that actually helped me lose real weight. I lost 12kg in just 4 weeks!"
+          <div class="testimonial-author">— Rose M. ★★★★★</div>
+        </div>
+
+        <div class="testimonial-quote">
+          "My crazy sweet cravings disappeared by the 3rd day! I've already lost 6kg and I'm still on the protocol. This actually works!"
+          <div class="testimonial-author">— Sarah C. ★★★★★</div>
+        </div>
+
+        <button class="btn" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 12: CURRENT WEIGHT -->
+      <section class="step-view" id="step-peso-atual">
+        <h2>What is your <span class="text-green">current weight?</span></h2>
+        <p class="subtitle">Almost there! We will adjust your plan according to your body</p>
+        
+        <div class="slider-container">
+          <div class="slider-value-display">
+            <span id="peso-atual-val">80</span><span>kg</span>
+          </div>
+          <input type="range" class="range-slider" id="peso-atual-slider" min="30" max="180" value="80">
+          <div class="slider-labels">
+            <span>30kg</span>
+            <span>180kg</span>
+          </div>
+        </div>
+
+        <button class="btn" style="margin-top: auto;" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 13: HEIGHT -->
+      <section class="step-view" id="step-altura">
+        <h2>What is your <span class="text-green">height?</span></h2>
+        <p class="subtitle">We will calculate your BMI</p>
+        
+        <div class="slider-container">
+          <div class="slider-value-display">
+            <span id="altura-val">165</span><span>cm</span>
+          </div>
+          <input type="range" class="range-slider" id="altura-slider" min="100" max="220" value="165">
+          <div class="slider-labels">
+            <span>100cm</span>
+            <span>220cm</span>
+          </div>
+        </div>
+
+        <button class="btn" style="margin-top: auto;" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 14: TARGET WEIGHT -->
+      <section class="step-view" id="step-peso-ideal">
+        <h2>And what weight do you <span class="text-green">want to reach?</span></h2>
+        <p class="subtitle">Define your ideal weight</p>
+        
+        <div class="slider-container">
+          <div class="slider-value-display">
+            <span id="peso-ideal-val">60</span><span>kg</span>
+          </div>
+          <input type="range" class="range-slider" id="peso-ideal-slider" min="30" max="120" value="60">
+          <div class="slider-labels">
+            <span>30kg</span>
+            <span>120kg</span>
+          </div>
+        </div>
+
+        <button class="btn" style="margin-top: auto;" data-action="next">Continue</button>
+      </section>
+
+      <!-- STEP 15: ROUTINE -->
+      <section class="step-view" id="step-dia-dia">
+        <h2>How is your <span class="text-green">day-to-day?</span></h2>
+        <p class="subtitle">Your daily routine also makes a difference</p>
+        <div class="options-grid grid-cols-1">
+          <div class="option-card" data-id="trabalho-fora" data-name="dia_a_dia">
+            <div class="option-card-text">I work away from home and have a busy routine</div>
+          </div>
+          <div class="option-card" data-id="homeoffice" data-name="dia_a_dia">
+            <div class="option-card-text">I work from home and have a flexible routine</div>
+          </div>
+          <div class="option-card" data-id="dona-casa" data-name="dia_a_dia">
+            <div class="option-card-text">I stay at home caring for my family</div>
+          </div>
+          <div class="option-card" data-id="outro" data-name="dia_a_dia">
+            <div class="option-card-text">Other</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 16: SLEEP -->
+      <section class="step-view" id="step-sono">
+        <h2>How many hours of <span class="text-green">sleep</span> do you get per night?</h2>
+        <p class="subtitle">The quality of your sleep directly impacts your weight loss</p>
+        <div class="options-grid grid-cols-1">
+          <div class="option-card" data-id="menos-5h" data-name="sono">
+            <div class="option-card-text">Less than 5 hours</div>
+          </div>
+          <div class="option-card" data-id="5-7h" data-name="sono">
+            <div class="option-card-text">Between 5 to 7 hours</div>
+          </div>
+          <div class="option-card" data-id="7-9h" data-name="sono">
+            <div class="option-card-text">Between 7 to 9 hours</div>
+          </div>
+          <div class="option-card" data-id="mais-9h" data-name="sono">
+            <div class="option-card-text">More than 9 hours</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 17: WATER -->
+      <section class="step-view" id="step-agua">
+        <h2>How much <span class="text-green">water</span> do you drink per day?</h2>
+        <p class="subtitle">Your hydration level also influences your weight loss</p>
+        <div class="options-grid grid-cols-1">
+          <div class="option-card" data-id="quase-nada" data-name="agua">
+            <div class="option-card-text">I drink almost nothing, I have more coffee or tea</div>
+          </div>
+          <div class="option-card" data-id="menos-1l" data-name="agua">
+            <div class="option-card-text">Less than 1L</div>
+          </div>
+          <div class="option-card" data-id="1-2l" data-name="agua">
+            <div class="option-card-text">Between 1 to 2L</div>
+          </div>
+          <div class="option-card" data-id="mais-2l" data-name="agua">
+            <div class="option-card-text">More than 2L</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 18: PROFILE & IMC DISPLAY -->
+      <section class="step-view" id="step-perfil-imc">
+        <h2 style="color: var(--danger-color); font-size: 1.2rem; line-height: 1.4;">⚠️ WARNING! Based on your answers and BMI, your body is in <strong>FAT ACCUMULATION</strong> mode</h2>
+        
+        <div class="imc-gauge-card">
+          <div class="imc-metrics-grid">
+            <div class="imc-metric-box">
+              <div class="imc-metric-label">Your BMI</div>
+              <div class="imc-metric-value" id="imc-value-display">29.3</div>
+            </div>
+            <div class="imc-metric-box">
+              <div class="imc-metric-label">Classification</div>
+              <div class="imc-metric-value" id="imc-category-display" style="font-size: 1.1rem; color: var(--primary-color);">Overweight</div>
+            </div>
+          </div>
+
+          <div class="imc-gauge-bar">
+            <div class="imc-pointer" id="imc-gauge-pointer"></div>
+          </div>
+          <div class="imc-labels-row">
+            <span>Underweight</span>
+            <span>Normal</span>
+            <span>Overweight</span>
+            <span>Obese</span>
+          </div>
+        </div>
+
+        <div class="alert-banner alert-danger" id="alert-normal" style="display:none; flex-direction: column; align-items: flex-start; gap: 0.5rem; text-align: left;">
+          <div><strong>⚠️ Your metabolism may be sabotaging you without you noticing!</strong></div>
+          <div style="font-size: 0.85rem; line-height: 1.4;">Even at a normal weight, your body may be retaining toxins and working more slowly, accumulating localized fat and leaving you with less energy.</div>
+        </div>
+        <div class="alert-banner alert-danger" id="alert-overweight" style="display:none; flex-direction: column; align-items: flex-start; gap: 0.5rem; text-align: left;">
+          <div><strong>⚠️ Your metabolism may be sabotaging you without you noticing!</strong></div>
+          <div style="font-size: 0.85rem; line-height: 1.4;">Your BMI indicated overweight, your body is retaining toxins and working more slowly, accumulating localized fat and leaving you with less energy.</div>
+        </div>
+        <div class="alert-banner alert-danger" id="alert-obese" style="display:none; flex-direction: column; align-items: flex-start; gap: 0.5rem; text-align: left;">
+          <div><strong>⚠️ Your metabolism may be sabotaging you without you noticing!</strong></div>
+          <div style="font-size: 0.85rem; line-height: 1.4;">Your BMI indicated obesity, your body is retaining toxins and working more slowly, accumulating localized fat and leaving you with less energy.</div>
+        </div>
+
+        <div class="alert-banner alert-info" style="flex-direction: column; align-items: flex-start; text-align: left; padding: 1.25rem;">
+          <div style="font-weight: 700; margin-bottom: 0.5rem;">🚨 Warning signs:</div>
+          <div style="font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <div>❌ Slow metabolism and difficulty losing weight even when eating little.</div>
+            <div>❌ Constant fatigue and feeling bloated.</div>
+            <div>❌ Accumulation of fat in specific areas of the body, especially in the belly.</div>
+          </div>
+        </div>
+
+        <div class="alert-banner alert-light" style="flex-direction: column; text-align: left; padding: 1.25rem; font-size: 0.85rem; color: var(--text-primary); margin-bottom: 1.5rem;">
+          <div>💡 <strong>With Mounjaro for the Poor, your body accelerates fat burning naturally!</strong></div>
+          <div style="margin-top: 0.5rem;">The ideal combination of ingredients can activate your metabolism, reduce liquid retention, and increase your energy. 🔽 Discover how the protocol can transform your body.</div>
+        </div>
+
+        <h3 class="text-center" style="margin-top: 1rem; font-size: 1.1rem;"><span class="dynamic-name">Friend</span>, Mounjaro for the Poor will transform your body, just like it did for Rose!</h3>
+        <div class="hero-image-wrapper" style="margin-top: 1rem;">
+          <img class="hero-image" src="https://media.inlead.cloud/uploads/26522/2025-05-29/rxp85-96084343-1817315278411133-5702942186484531200-n.jpg" alt="Transformation Rose">
+        </div>
+
+        <button class="btn" style="margin-top: 1.5rem;" data-action="next">Generate my Protocol</button>
+      </section>
+
+      <!-- STEP 19: LOADING SPINNER -->
+      <section class="step-view" id="step-carregando">
+        <h2>Analyzing your profile...</h2>
+        <p class="subtitle">We are customizing the best protocol for you</p>
+
+        <div class="loading-steps">
+          <div class="loading-step-item">
+            <div class="loading-step-spinner"></div>
+            <div class="loading-step-check">✓</div>
+            <div class="loading-step-text">Evaluating sleep and hydration habits...</div>
+          </div>
+          <div class="loading-step-item">
+            <div class="loading-step-spinner"></div>
+            <div class="loading-step-check">✓</div>
+            <div class="loading-step-text">Calculating calorie deficit and metabolism...</div>
+          </div>
+          <div class="loading-step-item">
+            <div class="loading-step-spinner"></div>
+            <div class="loading-step-check">✓</div>
+            <div class="loading-step-text">Selecting the ideal active ingredients...</div>
+          </div>
+          <div class="loading-step-item">
+            <div class="loading-step-spinner"></div>
+            <div class="loading-step-check">✓</div>
+            <div class="loading-step-text">Generating your personalized shots and teas plan...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 20: BODY OF DESIRE -->
+      <section class="step-view" id="step-corpo-desejo">
+        <h2>What body type <span class="text-green">do you want to have?</span></h2>
+        <div class="options-grid grid-cols-2" style="gap: 1rem; margin-top: 1rem;">
+          <div class="option-card" data-id="em-forma" data-name="corpo_quer" style="flex-direction: column; align-items: center; padding: 0; gap: 0; overflow: hidden; border-radius: var(--radius-lg);">
+            <img style="width: 100%; height: 200px; object-fit: cover; display: block;" src="https://media.inlead.cloud/uploads/26522/2025-07-30/qVj5x-asf.jpg" alt="Fit">
+            <div class="option-card-text" style="font-size: 1rem; font-weight: 700; text-align: center; padding: 0.75rem;">Fit</div>
+          </div>
+          <div class="option-card" data-id="natural" data-name="corpo_quer" style="flex-direction: column; align-items: center; padding: 0; gap: 0; overflow: hidden; border-radius: var(--radius-lg);">
+            <img style="width: 100%; height: 200px; object-fit: cover; display: block;" src="https://media.inlead.cloud/uploads/26522/2025-07-30/0rZdE-safas.jpg" alt="Natural">
+            <div class="option-card-text" style="font-size: 1rem; font-weight: 700; text-align: center; padding: 0.75rem;">Natural</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 21: SALES OFFER -->
+      <section class="step-view" id="step-oferta" style="padding-bottom: 80px;">
+        <h2 style="font-size: 1.35rem; line-height: 1.4;"><span class="dynamic-name">Friend</span>, your protocol has been generated!</h2>
+        <p class="subtitle" style="color: var(--danger-color); font-weight: 700; margin-bottom: 1.5rem;">
+          ⚠️ This is exclusive and generated only once. Do not leave this page or you will lose it!
+        </p>
+
+        <!-- Dynamic Before/After Slideshow -->
+        <div class="carousel-wrapper">
+          <div class="carousel-slides">
+            <div class="carousel-slide">
+              <img src="src/media_1.jpg" alt="Transformation 1">
+            </div>
+            <div class="carousel-slide">
+              <img src="src/media_2.jpg" alt="Transformation 2">
+            </div>
+            <div class="carousel-slide">
+              <img src="src/media_3.jpg" alt="Transformation 3">
+            </div>
+          </div>
+          <div class="carousel-dots"></div>
+        </div>
+
+        <div class="alert-banner alert-info" style="margin-bottom: 1.5rem;">
+          <strong>🎯 Estimated body fat reduction: 15% - 25%</strong>
+        </div>
+
+        <!-- Looping timer -->
+        <div class="timer-box">
+          <div class="timer-title">⏰ THIS OFFER EXPIRES IN:</div>
+          <div class="timer-countdown" id="timer-display">15:00</div>
+        </div>
+
+        <!-- What you get -->
+        <div style="background-color: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem;">📋 Your plan includes:</h3>
+          <ul style="font-size: 0.9rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.5rem; list-style-type: none; padding-left: 0;">
+            <li>✅ <strong>Low-Cost Morning Shots:</strong> Activate fat burning right when you wake up.</li>
+            <li>✅ <strong>Hunger Inhibiting Teas:</strong> Control anxiety and completely eliminate sweet cravings.</li>
+            <li>✅ <strong>Mounjaro Mimicking Combinations:</strong> 100% natural ingredients that stimulate deep satiety.</li>
+            <li>✅ <strong>Simplified Step-by-Step Guide:</strong> Practical and quick to prepare in 20 minutes a day.</li>
+          </ul>
+        </div>
+
+        <!-- Pricing card -->
+        <div class="price-card">
+          <div class="price-strike">Was R197.00, now only</div>
+          <div class="price-main">R97.00</div>
+          <div class="price-terms">One-time payment, no subscriptions!</div>
+        </div>
+
+        <a href="https://premi.ejss.space/pay/3b13a0d0-2a3c-4bc0-80cf-cf890fe7c367" target="_blank" class="btn btn-pulse" style="margin-bottom: 1.5rem; min-height: 60px; font-size: 1.15rem;">
+          Get the Mounjaro for the Poor
+        </a>
+
+        <!-- Guarantee -->
+        <div class="guarantee-row">
+          <img class="guarantee-badge" src="https://media.inlead.cloud/uploads/26522/2025-08-13/7lWvm-sm-rn3v2-selo-de-garantia-de-30-dias-png-transparente-sem-fundo.png" alt="30 days guarantee">
+          <div class="guarantee-text">
+            <strong>30-Day Satisfaction Guarantee!</strong><br>
+            If you don't like the protocol or don't see results, we will refund 100% of your money, no questions asked.
+          </div>
+        </div>
+
+        <!-- Nutritionist badge -->
+        <div class="alert-banner alert-light" style="align-items: center; justify-content: center; gap: 0.75rem; text-align: center; margin-bottom: 2rem;">
+          <img style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" src="https://media.inlead.cloud/uploads/26522/2025-05-30/jd15z-asfdasfasf.png" alt="Nutritionist">
+          <span style="font-size: 0.82rem; font-weight: 600;">Protocol generated by: <strong>Dr. Sarah Bennett</strong><br>Nutritionist & Dietitian</span>
+        </div>
+
+        <!-- Reviews section -->
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">Who uses it gets results 😉👇</h3>
+        <div class="user-reviews">
+          <div class="review-card">
+            <div class="review-header">
+              <span class="review-author">Carla S.</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+            <div class="review-body">
+              "I'm on my tenth day and I've already lost 4.5 kg! The shots are delicious and super simple to make. The feeling of fullness is very real."
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <span class="review-author">Martha G.</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+            <div class="review-body">
+              "Highly recommend! My energy increased 100% and the crazy sweet cravings completely vanished by the third day."
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <span class="review-author">Julia T.</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+            <div class="review-body">
+              "I've tried several diets and could never lose more than 3kg. With Mounjaro for the Poor I lost 8kg in a month and best of all: without starving!"
+            </div>
+          </div>
+        </div>
+
+        <!-- Second CTA -->
+        <div style="margin: 1.5rem 0;">
+          <a href="https://premi.ejss.space/pay/3b13a0d0-2a3c-4bc0-80cf-cf890fe7c367" target="_blank" class="btn btn-pulse" style="min-height: 60px; font-size: 1.1rem;">
+            Get the Mounjaro for the Poor
+          </a>
+        </div>
+
+        <!-- FAQ accordion -->
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">Frequently Asked Questions:</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-header">
+              How will I receive the protocol?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              Access to the Mounjaro for the Poor protocol is sent immediately to your email and WhatsApp after payment confirmation. You will receive a simple link to access the material.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-header">
+              Are the ingredients expensive?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              No, on the contrary! All recommended ingredients are 100% natural and easily found in any local supermarket or market, costing only a few cents per day.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-header">
+              Can anyone do it?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              Yes! The protocol is based on 100% natural, healthy foods. However, if you are pregnant, breastfeeding, or have pre-existing chronic health conditions, we recommend consulting your doctor before starting.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-header">
+              How long until I see results?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-content">
+              Most clients report feeling a difference in the first week, with reduced bloating and diminished sweet cravings. Visible weight loss results on the scale usually start appearing from the second week.
+            </div>
+          </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div style="margin-top: 2rem;">
+          <a href="https://premi.ejss.space/pay/3b13a0d0-2a3c-4bc0-80cf-cf890fe7c367" target="_blank" class="btn btn-pulse" style="min-height: 60px; font-size: 1.15rem;">
+            Get the Mounjaro for the Poor
+          </a>
+        </div>
+
+        <!-- Floating bottom bar -->
+        <div class="floating-checkout-bar" id="floating-bar">
+          <a href="https://premi.ejss.space/pay/3b13a0d0-2a3c-4bc0-80cf-cf890fe7c367" target="_blank" class="btn btn-pulse" style="min-height: 48px; font-size: 1rem; padding: 0.5rem 1rem;">
+            Buy Mounjaro for the Poor — R97.00
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const offerStep = document.getElementById('step-oferta');
+      const floatingBar = document.getElementById('floating-bar');
+      if (offerStep && offerStep.classList.contains('active')) {
+        const rect = offerStep.getBoundingClientRect();
+        if (rect.top < 0 && rect.bottom > window.innerHeight + 80) {
+          floatingBar.style.display = 'block';
+        } else {
+          floatingBar.style.display = 'none';
+        }
+      } else {
+        if (floatingBar) floatingBar.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

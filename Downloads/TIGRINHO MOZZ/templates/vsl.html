@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeo Exclusivo - VSL</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b0b0b;
+            background-image: url('https://fortuninetyger.lovable.app/assets/bg-pagoda-8pQAIjpx.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff9900;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #cccccc;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.2);
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(90deg, #ff9900, #ff5500);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Assista ao Vídeo Abaixo para Descobrir o Segredo</h1>
+        <p>Preste muita atenção nos próximos minutos, pois essa informação pode mudar tudo.</p>
+        
+        <div class="video-container">
+            <!-- Generic Video Placeholder, can be replaced by Youtube/Vimeo iframe -->
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <a href="#" class="cta-button" id="buy-button" style="display: none;">QUERO ACESSAR AGORA!</a>
+    </div>
+
+    <script>
+        // Delay the CTA button appearance by 10 seconds (pitch delay simulation)
+        setTimeout(() => {
+            document.getElementById('buy-button').style.display = 'inline-block';
+        }, 10000);
+    </script>
+</body>
+</html>
